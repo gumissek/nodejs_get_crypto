@@ -3,13 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Get crypto currency</title>
+    <title>Get Crypto Currency Details</title>
+    <link href="https://fonts.googleapis.com/css2?family=Radix:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/styles.css">
 </head>
 <body>
-    <form action="" method="post">
-        <input type="text" name="inPUT" id="" value="<%=content  %>">
-        <input type="submit" value="GET CRYPTO SYMBOL" formaction="/getName">
-        <input type="submit" value="GET CRYPTO DETAILS" formaction="/getDetails">
-    </form>
+    <div class="container">
+        <header class="header">
+            <h1 id="author">Get Crypto Details! 🖱️</h1>
+            <img id="monkey" src="/images/tenor.gif" alt="Click me!" class="header-gif">
+            <script>
+                document.getElementById('monkey').addEventListener('click',()=>{
+                window.open('https://github.com/gumissek/nodejs_get_crypto','_blank'); 
+                    });
+                document.getElementById('author').addEventListener('click',()=>{
+                    window.open('https://github.com/gumissek','_blank'); 
+                });
+            </script>
+        </header>
+
+        <section class="form-section">
+            <form action="" method="post" id="form1">
+                <label for="inPUT">Cryptocurrency name:</label>
+                <input type="text" name="inPUT" id="inPUT" value="" placeholder="Type cryptocurrency name" required><br>
+
+                <label for="currency">Pick your currency:</label>
+                <select name="currency" form="form1">
+                    <option value="aed">aed</option>
+                    <option value="ars">ars</option>
+                    <option value="aud">aud</option>
+                    <option value="bch">bch</option>
+                    <option value="bdt">bdt</option>
+                    <option value="bhd">bhd</option>
+                    <option value="bmd">bmd</option>
+                    <option value="bnb">bnb</option>
+                    <option value="brl">brl</option>
+                    <option value="btc">btc</option>
+                    <option value="cad">cad</option>
+                    <option value="chf">chf</option>
+                    <option value="clp">clp</option>
+                    <option value="cny">cny</option>
+                    <option value="czk">czk</option>
+                    <option value="dkk">dkk</option>
+                    <option value="dot">dot</option>
+                    <option value="eos">eos</option>
+                    <option value="eth">eth</option>
+                    <option value="eur">eur</option>
+                    <option value="gbp">gbp</option>
+                    <option value="gel">gel</option>
+                    <option value="hkd">hkd</option>
+                    <option value="huf">huf</option>
+                    <option value="idr">idr</option>
+                    <option value="ils">ils</option>
+                    <option value="inr">inr</option>
+                    <option value="jpy">jpy</option>
+                    <option value="krw">krw</option>
+                    <option value="kwd">kwd</option>
+                    <option value="lkr">lkr</option>
+                    <option value="ltc">ltc</option>
+                    <option value="mmk">mmk</option>
+                    <option value="mxn">mxn</option>
+                    <option value="myr">myr</option>
+                    <option value="ngn">ngn</option>
+                    <option value="nok">nok</option>
+                    <option value="nzd">nzd</option>
+                    <option value="php">php</option>
+                    <option value="pkr">pkr</option>
+                    <option value="pln">pln</option>
+                    <option value="rub">rub</option>
+                    <option value="sar">sar</option>
+                    <option value="sek">sek</option>
+                    <option value="sgd">sgd</option>
+                    <option value="thb">thb</option>
+                    <option value="try">try</option>
+                    <option value="twd">twd</option>
+                    <option value="uah">uah</option>
+                    <option value="usd">usd</option>
+                    <option value="vef">vef</option>
+                    <option value="vnd">vnd</option>
+                    <option value="xag">xag</option>
+                    <option value="xau">xau</option>
+                    <option value="xdr">xdr</option>
+                    <option value="xlm">xlm</option>
+                    <option value="xrp">xrp</option>
+                    <option value="yfi">yfi</option>
+                    <option value="zar">zar</option>
+                    <option value="bits">bits</option>
+                    <option value="link">link</option>
+                    <option value="sats">sats</option>
+                </select><br>
+
+                <input type="submit" value="GET CRYPTO DETAILS" formaction="/getDetails">
+            </form>
+        </section>
+
+        <% if (locals.content.text) { %>
+        <section class="crypto-info">
+            <h2><%=content.text%></h2>
+        </section>
+        <% } %>
+        
+        <% if (locals.content.cryptoDetails) { %>
+        <section class="crypto-details">
+            <h2>Name: <%=content.cryptoDetails.name%></h2>
+            <h3>Symbol: <%=content.cryptoDetails.symbol%></h3>
+            <h4>Chosen Currency: <%=content.cryptoDetails.currency%></h4>
+            <h4>Genesis Date: <%=content.cryptoDetails.genesis_date%></h4>
+            <img src="<%=content.cryptoDetails.image%>" alt="<%=content.cryptoDetails.name%> image" class="crypto-image">
+            <h4>Market Data on <%=content.cryptoDetails.market_data.info_date%></h4>
+            <ul>
+                <li>Current Price -> <%=content.cryptoDetails.market_data.current_price%> <%=content.cryptoDetails.currency%></li>
+                <li>All Time High Price -> <%=content.cryptoDetails.market_data.ath%> <%=content.cryptoDetails.currency%></li>
+                <li>All Time Low Price -> <%=content.cryptoDetails.market_data.atl%> <%=content.cryptoDetails.currency%></li>
+                <li>High 24h Price -> <%=content.cryptoDetails.market_data.high_24h%> <%=content.cryptoDetails.currency%></li>
+                <li>Low 24h Price -> <%=content.cryptoDetails.market_data.low_24h%> <%=content.cryptoDetails.currency%></li>
+                <li>Change 24h Price -> <%=content.cryptoDetails.market_data.price_change_24h_in_currency%> <%=content.cryptoDetails.currency%></li>
+                <li>Change % 24h Price -> <%=content.cryptoDetails.market_data.price_change_percentage_24h_in_currency%> %</li>
+            </ul>
+            <div class="description">
+                <h4>Description:</h4>
+                <p><%=content.cryptoDetails.description%></p>
+            </div>
+        </section>
+        <% } %>
+    </div>
 </body>
 </html>
